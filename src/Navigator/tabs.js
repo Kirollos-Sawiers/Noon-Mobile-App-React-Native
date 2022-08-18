@@ -4,6 +4,7 @@ import Category from './../Screens/Categories/Category';
 import Summerstore from './../Screens/Summerstore/Summerstore';
 import Myaccount from './../Screens/Myaccount/Myaccount';
 import Cart from './../Screens/Cart/Cart';
+import Signinform from './../Screens/sign-in-up-forms/signinform';
 import Homeicon from "../../assets/Navigationicons/home-inactive.svg"
 import Categoryicon from "../../assets/Navigationicons/categories-inactive.svg"
 import Smileicon from "../../assets/Navigationicons/smile-inactive.svg"

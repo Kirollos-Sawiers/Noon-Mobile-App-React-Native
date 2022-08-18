@@ -62,7 +62,10 @@ maincardcontainer: {
     width: 200,
     height: 'auto',
     backgroundColor: 'white',
-    border: "1px solid grey",
+    borderWidth:1,
+    borderColor:'#e8e8e8',
+    margin:5,
+
 },
 cardcontainer: {
     flexDirection: 'column',
