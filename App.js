@@ -7,13 +7,11 @@ import Tabs from './src/Navigator/tabs';
 import Signinform from './src/Screens/sign-in-up-forms/signinform';
 import Signupform from './src/Screens/sign-in-up-forms/signupform';
 import Details from './src/Screens/Details/Details';
+import Products from './src/Screens/Products/Products';
+import UserProfile from './src/Screens/Userprofile/UserProfile';
 
 const Stack = createStackNavigator();
-const noonLogo = () => {
-  return (
-    <Logo/>
-  )
-}
+
 export default function App() {
   return (
 
@@ -30,12 +28,16 @@ export default function App() {
           />
           <Stack.Screen name="Signup" component={Signupform} options={{
             headerShown: false,
-            
           }} />
           <Stack.Screen name="Details" component={Details} options={{
             headerShown: true,
           }} />
-
+          <Stack.Screen name="Products" component={Products} options={{
+            headerShown: true,
+          }} />
+          <Stack.Screen name="Profile" component={UserProfile} options={{
+            headerShown: true,
+          }} />
 
         </Stack.Navigator>
       </NavigationContainer>

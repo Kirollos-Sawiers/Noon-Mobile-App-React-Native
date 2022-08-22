@@ -8,6 +8,7 @@ import {
   Dimensions,
   TouchableWithoutFeedback,
   TouchableOpacity,
+  Pressable
 } from "react-native";
 import ForYou from "./Foryou";
 
@@ -35,7 +36,7 @@ const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
 const widthProportion = "60%";
 const sidePortion = "30%";
 
-function Category() {
+function Category({navigation}) {
   const [selectedItem, setSelectedItem] = React.useState(null);
 
   const animatedValue = new Animated.Value(0); //makes reactnative save current position when component receive new value or props
@@ -70,6 +71,7 @@ function Category() {
   //----------------- Tab ------------------------
   const Tabs = React.forwardRef(({ item }, ref) => {
     return (
+      
       <View ref={ref}>
         <Text
           style={{
@@ -82,11 +84,12 @@ function Category() {
           {data}
         </Text>
       </View>
+
     );
   });
 
   return (
-    <View style={{ flexDirection: "row", top: 40 }}>
+    <View style={{ flexDirection: "row",}}>
       <View style={styles.container}>
         <AnimatedFlatList
           // contentContainerStyle={{marginTop: 200}}
@@ -150,7 +153,9 @@ function Category() {
 const styles = StyleSheet.create({
   container: {
     flex: 2,
-    backgroundColor: "#bcc7dc",
+    width: '100%',
+    height: '100%',
+    backgroundColor: "white",
   },
 
   itemText: {

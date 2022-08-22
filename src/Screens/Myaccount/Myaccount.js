@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Text, View, ScrollView } from "react-native";
+import { Text, View, ScrollView, Pressable } from "react-native";
 import style from "./Myaacountstyle";
 import { Divider } from "react-native-paper";
 import Logo from "../../../assets/svg/noon-logo-en.svg";
@@ -39,6 +39,7 @@ function Myaccount({ navigation }) {
         setSignState(signin());
         setMyAccountList(myAccount());
         setSignoutButton(signouticon());
+        console.log(user)
       } else {
         setSignState(signout());
         setMyAccountList();
@@ -159,17 +160,22 @@ function Myaccount({ navigation }) {
           </View>
         </View>
         <Divider />
-        <View style={style.mainlistcontainer}>
-          <View style={style.sublistcontainer}>
-            <Profileicon style={{ marginRight: 10 }} />
-            <Text style={{ fontWeight: "bold", marginVertical: 10 }}>
-              Profile
-            </Text>
+        <Pressable onPress={() => {
+          navigation.navigate("Profile");
+          
+        }}>
+          <View style={style.mainlistcontainer}>
+            <View style={style.sublistcontainer}>
+              <Profileicon style={{ marginRight: 10 }} />
+              <Text style={{ fontWeight: "bold", marginVertical: 10 }}>
+                Profile
+              </Text>
+            </View>
+            <View style={style.sublistcontainer}>
+              <Arrowicon width={15} height={15} style={{ marginLeft: 10 }} />
+            </View>
           </View>
-          <View style={style.sublistcontainer}>
-            <Arrowicon width={15} height={15} style={{ marginLeft: 10 }} />
-          </View>
-        </View>
+        </Pressable>
         <Divider />
       </>
     );
@@ -303,7 +309,7 @@ function Myaccount({ navigation }) {
               {"\u00A9"} 2022 noon.com All rights reserved.
             </Text>
           </View>
-        {/* </View> */}
+          {/* </View> */}
         </ScrollView>
       </View>
     </>

@@ -12,6 +12,7 @@ import Accounticon from "../../assets/Navigationicons/account-inactive.svg"
 import Carticon from "../../assets/Navigationicons/cart-inactive.svg"
 import { View, Text} from 'react-native';
 import style from "./tabsStyle";
+import ForYou from '../Screens/Categories/Foryou';
 const Tab = createBottomTabNavigator();
 
 const Tabs = () => {
@@ -30,7 +31,7 @@ const Tabs = () => {
                     ),
                 }}
             />
-            <Tab.Screen name="Category" component={Category}
+            <Tab.Screen name="Foryou" component={ForYou}
              options={{
                 headerShown: false,
                 tabBarLabel: '',

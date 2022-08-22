@@ -6,8 +6,10 @@ import style from "./signupformstyle";
 import Logo from "../../../assets/svg/noon-logo-en.svg";
 import Closeicon from "../../../assets/svg/close.svg";
 import * as Yup from "yup";
-import {auth} from '../../../database/firebase'
+import {auth,db} from '../../../database/firebase'
 import { onAuthStateChanged,createUserWithEmailAndPassword } from "firebase/auth";
+import { doc , setDoc } from "firebase/firestore";
+
 
 
 function Signupform({ navigation }) {
@@ -24,9 +26,10 @@ function Signupform({ navigation }) {
   createUserWithEmailAndPassword(auth, fbemail, fbpassword)
       .then((userCredentials) => {
         const user = userCredentials.user;
+        setUserData();
         console.log('signed up with : ', user.email);
       }).catch(error => alert(error.message));
-  }
+  };
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, user => {
        if(user){
@@ -35,6 +38,18 @@ function Signupform({ navigation }) {
      })
      return unsubscribe
    },[])
+
+   const setUserData = () => {
+    setDoc(doc(db, "mobileUsers", `${fbemail}`),{
+      firstName: fbfirstname,
+      lastName : fblastname,
+      password: fbpassword,
+    }).then(()=>{
+      console.log("data submitted");
+    }).catch((error)=>{
+      console.log(error.messege)
+    });
+   }
 
   return (
 
@@ -119,7 +134,7 @@ function Signupform({ navigation }) {
               )}
             </Formik>
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-              <Text style={{ color: 'grey', marginLeft: 15 }}>Don't have an account?</Text>
+              <Text style={{ color: 'grey', marginLeft: 15 }}>Already have account :</Text>
               <Text style={style.boldText} onPress={() => navigation.navigate("Signin")}>Sign In</Text>
             </View>
           </View>

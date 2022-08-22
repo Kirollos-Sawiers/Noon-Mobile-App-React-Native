@@ -21,6 +21,8 @@ function Summerstore({ navigation}) {
   const [searchQuery, setSearchQuery] = useState("");
   const [mobiles, setMobiles] = useState([]);
   const [filterData, setFilterData] = useState([]);
+  const [loading, setLoading] = useState(true);
+
 
   useEffect(() => {
     getAllMobiles();
@@ -47,6 +49,8 @@ function Summerstore({ navigation}) {
         });
         setMobiles(data);
         setFilterData(data);
+    setLoading(false);
+
         console.log("document data : ", mobiles);
       })
       .catch((error) => {
@@ -84,6 +88,7 @@ function Summerstore({ navigation}) {
   };
 
   const ListProduct = ({ item }) => {
+    let salePrice = item.price - (item.price * (parseInt(item.discount))*0.01);
     return (
 			<Pressable onPress={() => {
 				navigation.navigate('Details', {
@@ -99,7 +104,7 @@ function Summerstore({ navigation}) {
 
         <View style={style.pricecontainer}>
           <Text style={{ fontWeight: "300" }}>EGP </Text>
-          <Text style={{ fontWeight: "bold" }}>{item.price}</Text>
+          <Text style={{ fontWeight: "bold" }}>{salePrice}</Text>
         </View>
         <View style={style.pricecontainer}>
           <Text
@@ -140,7 +145,23 @@ function Summerstore({ navigation}) {
           style={style.searchBar}
         />
 				<ScrollView>
+        {loading && (
+          <View style={{width: '100%', height: '100%'}}>
         <Image
+          style={{
+            width: 200,
+            height: 200,
+            alignSelf: "center",
+            justifyContent: "center",
+          }}
+          source={{
+            uri: "https://f.nooncdn.com/s/app/com/noon/images/_loaders/noon-loader.gif",
+          }}
+        />
+        </View>
+      )}
+    {mobiles && ( <View>
+      <Image
           source={{
             uri: "https://k.nooncdn.com/cms/pages/20220711/c0fcf46593a74ab27356e1580aba5195/en_mb_eg-toggle-01.png",
           }}
@@ -190,14 +211,7 @@ function Summerstore({ navigation}) {
                 renderItem={({ item }) => (
                   <>
                     <View style={section.imgcontainer}>
-                      <ListProduct item={item} 
-											  // onPress={() => {
-												// 	navigation.navigate('Details', {
-												// 		itemId: item.iD,
-												// 	});
-												// 	console.log(item.id)
-												// }}
-											/>
+                      <ListProduct item={item} />
                     </View>
                   </>
                 )}
@@ -209,7 +223,9 @@ function Summerstore({ navigation}) {
           renderItem={({ item, section }) => {
             return <>{/* <ListItem item={item} /> */}</>;
           }}
-        />
+        /> 
+        </View>
+        )}
 				</ScrollView>
       </SafeAreaView>
     </View>
