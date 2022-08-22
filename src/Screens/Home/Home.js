@@ -232,7 +232,7 @@ function Home({ navigation }) {
               }}
               style={style.sahelBanner}
             />
-            {/* <Carousel data={datacarousel} /> */}
+            <Carousel data={datacarousel} />
 
             <FlatList
               horizontal
@@ -409,7 +409,7 @@ function Home({ navigation }) {
                 renderItem={({ item }) => (
                   <>
                     <View>
-                      <ProductsApi item={item} catid={2} />
+                      <ProductsApi item={item} catid={4} />
                     </View>
                   </>
                 )}
@@ -476,7 +476,7 @@ function Home({ navigation }) {
                 renderItem={({ item }) => (
                   <>
                     <View>
-                      <ProductsApi item={item} catid={4} />
+                      <ProductsApi item={item} catid={5} />
                     </View>
                   </>
                 )}

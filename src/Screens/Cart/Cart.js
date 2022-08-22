@@ -269,7 +269,7 @@ function Cart({ navigation }) {
 						alignItems: "center",
 					}}
 				>
-					<View
+					{/* <View
 						style={{
 							flexDirection: "row",
 							alignItems: "center",
@@ -312,7 +312,7 @@ function Cart({ navigation }) {
 								}}
 							/>
 						</View>
-					</View>
+					</View> */}
 					<TouchableOpacity onPress={() => removeItemFromCart(data.id)}>
 						<MaterialCommunityIcons
 							name="delete-outline"

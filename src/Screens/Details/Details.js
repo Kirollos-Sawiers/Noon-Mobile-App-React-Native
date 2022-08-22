@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Text, View, Image, ScrollView, FlatList, SectionList } from "react-native";
+import { Text, View, Image, ScrollView, FlatList, SectionList,ToastAndroid, } from "react-native";
 import { Divider, Button, ProgressBar, List, Searchbar } from "react-native-paper";
 import style from "./Detailsstyle";
 import Logo from "../../../assets/svg/noon-logo-en.svg";
@@ -104,6 +104,7 @@ function Details({ route, navigation }) {
       console.log(itemArray);
       try {
         await AsyncStorage.setItem('productsIds', JSON.stringify(array));
+				ToastAndroid.show("Product Added To Your Cart!", ToastAndroid.SHORT);
       } catch (error) {
         return error;
       }
@@ -112,6 +113,7 @@ function Details({ route, navigation }) {
       array.push(itemId);
       try {
         await AsyncStorage.setItem('productsIds', JSON.stringify(array));
+				ToastAndroid.show("Product Added To Your Cart!", ToastAndroid.SHORT);
         console.log(array);
 
       } catch (error) {
@@ -131,7 +133,7 @@ function Details({ route, navigation }) {
           {/* Section One */}
 
           <View style={style.headContainer}>
-            <Text style={{ fontWeight: "bold", color: "#2b4cd7" }}>Google</Text>
+            <Text style={{ fontWeight: "bold", color: "#2b4cd7" }}>{product.brand}</Text>
             <View style={style.ratecontainer}>
               <View style={style.rateBox}>
                 <Text
@@ -142,7 +144,7 @@ function Details({ route, navigation }) {
                 <Ratestaricon width="10" height="10" fill="white" />
               </View>
               <Text style={{ fontSize: 12, textDecorationLine: "underline" }}>
-                1 rating
+                {product.numberOfRatings} rating
               </Text>
             </View>
           </View>

@@ -80,10 +80,6 @@ const Products = ({ route, navigation }) => {
     );
   };
 
-  
-
-
-
   return (
     <View>
       {loading && (
